@@ -98,6 +98,9 @@ ModuleConnectivity <- function(
     )[genes_use,cells.use]
   }
 
+  # Check for NaNs
+  seurat_obj@misc$exp_mat <- exp_mat
+  
   # are we using the sparse correlation? (faster!)
   if(sparse){
     kMEs <- corSparse(
@@ -117,6 +120,9 @@ ModuleConnectivity <- function(
       ...
     )
   }
+
+  # Check for NaNs
+  seurat_obj@misc$kMEs <- kMEs
 
   # add module color to the kMEs table
   modules <- modules[,1:3]
