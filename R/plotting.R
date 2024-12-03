@@ -2945,6 +2945,7 @@ ModuleRadarPlot <- function(
     cell_grouping <- cell_grouping[barcodes]
   }
 
+  MEs <- as.data.frame(MEs)
   MEs$cluster <- cell_grouping
   clusters <- as.character(unique(cell_grouping))
 
