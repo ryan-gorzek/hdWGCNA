@@ -2924,7 +2924,7 @@ ModuleRadarPlot <- function(
     names(cell_grouping) <- colnames(seurat_obj)
   }
 
-  if(is.factor(cell_grouping))
+  if(is.factor(cell_grouping)){
     group_order <- levels(cell_grouping)
     print(group_order)
   } else{
