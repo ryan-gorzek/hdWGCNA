@@ -2901,6 +2901,7 @@ ModuleRadarPlot <- function(
   wgcna_name = NULL,
   fill=TRUE,
   draw.points=FALSE,
+  group.order
   ... # additional params for ggradar
 ){
 
@@ -2922,6 +2923,12 @@ ModuleRadarPlot <- function(
   } else{
     cell_grouping <- seurat_obj@meta.data[,group.by]
     names(cell_grouping) <- colnames(seurat_obj)
+  }
+
+  if(is.factor(cell_grouping)){
+    group_order <- levels(cell_grouping)
+  } else{
+    group_order <- unique(cell_grouping)
   }
 
   # get the module info
@@ -2968,6 +2975,9 @@ ModuleRadarPlot <- function(
   plot_df$group <- factor(as.character(plot_df$group), levels=mods)
   plot_df <- plot_df %>% dplyr::arrange(group) %>% as.data.frame()
   colnames(plot_df) <- c('group', clusters)
+
+  # set the group factor levels
+  plot_df <- plot_df[,c('group', group_order)]
 
   # make the radar plots for each module
   plot_list <- list()
