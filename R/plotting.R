@@ -2901,7 +2901,6 @@ ModuleRadarPlot <- function(
   wgcna_name = NULL,
   fill=TRUE,
   draw.points=FALSE,
-  group.order
   ... # additional params for ggradar
 ){
 
